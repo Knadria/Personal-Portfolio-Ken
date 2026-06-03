@@ -7,7 +7,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 const personalInfo = [
-  { category: "Age", info: 20 },
+
   { category: "Education", info: "BINUS University" },
   { category: "Major", info: "Computer Science" },
   { category: "Email", info: "kennardkhouw@gmail.com" },
