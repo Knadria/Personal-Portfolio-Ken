@@ -15,7 +15,7 @@ interface Project {
   category: string;
 }
 
-export default function Carousel({ images }: { images: Project["image"] }) {
+export default function Carousel({ images }: { images: Project["images"] }) {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");
   const [animating, setAnimating] = useState(false);
