@@ -11,8 +11,6 @@ const personalInfo = [
   { category: "Education", info: "BINUS University" },
   { category: "Major", info: "Computer Science" },
   { category: "Email", info: "kennardkhouw@gmail.com" },
-  { category: "Phone", info: "081510667868" },
-  { category: "Location", info: "Cipondoh, Tangerang" },
 ];
 const item = {
   hidden: { opacity: 0, y: 30 },
