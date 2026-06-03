@@ -82,7 +82,7 @@ export default function About() {
         className="flex flex-col items-center justify-center mb-10 gap-10"
       >
         <div className="flex flex-col lg:flex-row mt-4 gap-10 items-center p-10">
-          <div className="relative p-10 h-150">
+          <div className="relative p-10 h-120">
             <span className="absolute top-0 right-0 w-20 h-20 border-t-5 border-r-5 borders-about hidden sm:block"></span>
             <span className="absolute bottom-0 left-0 w-20 h-20 border-b-5 border-l-5 borders-about hidden sm:block"></span>
             <div className="w-60 sm:w-120 lg:w-80 h-full perspective-distant card inset-0 flex flex-col  rounded-2xl border border-border shadow-xl">
