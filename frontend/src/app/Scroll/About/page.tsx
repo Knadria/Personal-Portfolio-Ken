@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { Download } from "lucide-react";
 import { motion } from "framer-motion";
-import ProfileCard from "@/src/components/ui/card/ProfileCard";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
