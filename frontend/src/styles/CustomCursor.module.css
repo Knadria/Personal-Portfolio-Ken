@@ -1,0 +1,86 @@
+/* Hide native cursor site-wide */
+:global(*),
+:global(*::before),
+:global(*::after) {
+  cursor: none !important;
+}
+
+/* ── Outer ring ─────────────────────────────────── */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+  will-change: transform;
+}
+
+/* ── Inner dot ──────────────────────────────────── */
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.08s linear;
+  will-change: transform;
+}
+
+/* ── Visibility ─────────────────────────────────── */
+.cursor:global(.cursor--visible) {
+  opacity: 1;
+}
+
+.dot:global(.cursor--visible) {
+  opacity: 1;
+}
+
+/* ── Hover over interactive elements ───────────── */
+.cursor:global(.cursor--hover) {
+  width: 52px;
+  height: 52px;
+  background: rgba(0, 0, 0, 0.07);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ── Mouse pressed ──────────────────────────────── */
+.cursor:global(.cursor--pressed) {
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ── Dark mode ──────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  .cursor {
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+  .dot {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .cursor:global(.cursor--hover) {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+  .cursor:global(.cursor--pressed) {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+}
