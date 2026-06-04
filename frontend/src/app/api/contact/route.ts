@@ -22,19 +22,12 @@ export async function POST(request: Request) {
     );
   }
 
-  const db = getDb();
-  const stmt = db.prepare(
-    `INSERT INTO contact_messages (name, email, subject, message, created_at)
-     VALUES (?, ?, ?, ?, ?)`
-  );
+  const db = await getDb();
 
-  stmt.run(
-    parsed.data.name,
-    parsed.data.email,
-    parsed.data.subject,
-    parsed.data.message,
-    new Date().toISOString()
-  );
+  await db`
+    INSERT INTO contact_messages (name, email, subject, message, created_at)
+    VALUES (${parsed.data.name}, ${parsed.data.email}, ${parsed.data.subject}, ${parsed.data.message}, ${new Date().toISOString()})
+  `;
 
   return NextResponse.json({ message: "Message saved successfully." });
 }

@@ -24,6 +24,7 @@
     "mongoose": "^9.6.2",
     "motion": "^12.38.0",
     "mysql2": "^3.22.3",
+    "postgres": "^3.4.7",
     "next": "^16.2.6",
     "next-themes": "^0.4.6",
     "postcss": "^8.5.10",

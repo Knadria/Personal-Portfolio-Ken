@@ -1,30 +1,37 @@
-import Database from "better-sqlite3";
-import fs from "fs";
-import path from "path";
+import postgres from "postgres";
 
-let db: Database.Database | null = null;
+let sqlClient: postgres.Sql | null = null;
 
-function getDbPath() {
-  const dataDir = path.join(process.cwd(), "data");
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
+function getSqlClient() {
+  if (!sqlClient) {
+    const databaseUrl = process.env.DATABASE_URL;
+    if (!databaseUrl) {
+      throw new Error("DATABASE_URL must be set for PostgreSQL connectivity.");
+    }
+
+    sqlClient = postgres(databaseUrl, {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    });
   }
-  return path.join(dataDir, "contact.db");
+
+  return sqlClient;
 }
 
-export function getDb() {
-  if (!db) {
-    db = new Database(getDbPath());
-    db.prepare(
-      `CREATE TABLE IF NOT EXISTS contact_messages (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        email TEXT NOT NULL,
-        subject TEXT NOT NULL,
-        message TEXT NOT NULL,
-        created_at TEXT NOT NULL
-      )`
-    ).run();
-  }
+export async function getDb() {
+  const db = getSqlClient();
+
+  await db`
+    CREATE TABLE IF NOT EXISTS contact_messages (
+      id SERIAL PRIMARY KEY,
+      name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      subject TEXT NOT NULL,
+      message TEXT NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `;
+
   return db;
 }

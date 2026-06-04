@@ -10,12 +10,12 @@ export async function GET(request: Request) {
     return NextResponse.json({ detail: "Unauthorized" }, { status: 401 });
   }
 
-  const db = getDb();
-  const messages = db
-    .prepare(
-      `SELECT id, name, email, subject, message, created_at FROM contact_messages ORDER BY created_at DESC`
-    )
-    .all();
+  const db = await getDb();
+  const messages = await db`
+    SELECT id, name, email, subject, message, created_at
+    FROM contact_messages
+    ORDER BY created_at DESC
+  `;
 
   return NextResponse.json(messages);
 }
