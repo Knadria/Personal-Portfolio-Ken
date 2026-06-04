@@ -29,12 +29,9 @@ export default function Portfolio() {
           <About />
           <HardSkill />
           <SoftSkill />
-        
           <TimelineJourney />
-         
           <Project />
           <Certificates />
-          <Contact />
           <Footer />
         </main>
       )}

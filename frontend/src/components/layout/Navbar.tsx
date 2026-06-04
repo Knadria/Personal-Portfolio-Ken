@@ -10,7 +10,6 @@ const NavLinks = [
   { label: "Journey", href: "journey" },
   { label: "Projects", href: "project" },
   { label: "Certificates", href: "certificate" },
-  { label: "Contact", href: "contact" },
 ];
 
 export function useScrollNavbar({ threshold = 10, hideOnDown = false } = {}) {
