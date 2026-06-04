@@ -9,7 +9,6 @@ const NavLinks = [
   { label: "Journey", href: "journey" },
   { label: "Projects", href: "project" },
   { label: "Certificates", href: "certificate" },
-  { label: "Contact", href: "contact" },
 ];
 
 export default function MobileMenu() {
