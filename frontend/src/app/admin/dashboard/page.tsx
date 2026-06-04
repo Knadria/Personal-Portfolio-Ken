@@ -9,6 +9,7 @@ interface MessageItem {
   email: string;
   subject: string;
   message: string;
+  created_at: string;
 }
 
 export default function AdminDashboardPage() {
@@ -26,7 +27,7 @@ export default function AdminDashboardPage() {
 
     const fetchMessages = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/admin/messages", {
+        const response = await fetch("/api/admin/messages", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -108,6 +109,9 @@ export default function AdminDashboardPage() {
                   <div className="text-right">
                     <p className="text-sm text-slate-400">Subject</p>
                     <p className="text-lg font-semibold">{message.subject}</p>
+                    <p className="text-xs text-slate-400 mt-2">
+                      {new Date(message.created_at).toLocaleString()}
+                    </p>
                   </div>
                 </div>
                 <div className="mt-5 rounded-2xl bg-[#111111] p-5 text-slate-200">
