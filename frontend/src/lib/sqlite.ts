@@ -3,8 +3,9 @@ import postgres from "postgres";
 let sqlClient: postgres.Sql | null = null;
 
 function getSqlClient() {
+  const DATABASE_URL = "postgresql://neondb_owner:npg_DGsI6FPOg4aA@ep-fancy-sunset-aopg2gw1-pooler.c-2.ap-southeast-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require";  
   if (!sqlClient) {
-    const databaseUrl = process.env.DATABASE_URL;
+    const databaseUrl = DATABASE_URL;
     if (!databaseUrl) {
       throw new Error("DATABASE_URL must be set for PostgreSQL connectivity.");
     }
